@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire | Tactical Gel Blasters Nigeria</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #f97316;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .negotiable-banner {
+            background-color: rgba(249, 115, 22, 0.15);
+            border: 1px solid #f97316;
+            color: #fb923c;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Pure CSS Tab Controller */
+        .tab-radio {
+            display: none;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .tab-btn {
+            padding: 14px 32px;
+            background-color: #111827;
+            color: #9ca3af;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover {
+            background-color: #1f2937;
+            color: #ffffff;
+        }
+
+        #tab-intro:checked~.tab-buttons label[for="tab-intro"],
+        #tab-products:checked~.tab-buttons label[for="tab-products"] {
+            background-color: #f97316;
+            color: #0b0f19;
+            border-color: #f97316;
+        }
+
+        .tab-content {
+            display: none;
+            background-color: #111827;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #tab-intro:checked~.content-container #content-intro,
+        #tab-products:checked~.content-container #content-products {
+            display: block;
+        }
+
+        /* Tab 1: Info & Contact */
+        .intro-box h2 {
+            color: #f97316;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .intro-box p {
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            background-color: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background-color: #1f2937;
+            border-left: 4px solid #f97316;
+            padding: 18px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .contact-box {
+            background-color: #0b0f19;
+            border: 1px solid #f97316;
+            padding: 22px;
+            border-radius: 10px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: #f97316;
+            margin-bottom: 10px;
+        }
+
+        .contact-number {
+            font-size: 1.6rem;
+            color: #22c55e;
+            font-weight: 800;
+            margin: 10px 0;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: #22c55e;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #16a34a;
+        }
+
+        .features-list {
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+        }
+
+        .features-list strong {
+            color: #f97316;
+        }
+
+        /* Tab 2: Text-Only Product Catalog (Items) */
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .catalog-header h2 {
+            color: #f97316;
+            margin-bottom: 5px;
+        }
+
+        .catalog-header p {
+            color: #fb923c;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #0b0f19;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #1f2937;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #f97316;
+        }
+
+        .product-info {
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .price-tag {
+            background-color: #111827;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+            text-align: center;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            color: #22c55e;
+            font-weight: 800;
+        }
+
+        .negotiable-text {
+            font-size: 0.75rem;
+            color: #f97316;
+            font-weight: 600;
+            display: block;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Empire</h1>
+            <p>Tactical Sports & Premium Gel Blasters Supplier</p>
+        </header>
+
+        <div class="negotiable-banner">
+            🤝 <strong>Notice:</strong> All Gel Blaster prices are negotiable! Contact us at <strong>+234 8169302651</strong> to place an order or make an offer.
+        </div>
+
+        <input type="radio" id="tab-intro" name="tabs" class="tab-radio" checked>
+        <input type="radio" id="tab-products" name="tabs" class="tab-radio">
+
+        <div class="tab-buttons">
+            <label for="tab-intro" class="tab-btn">About Empire & Contact</label>
+            <label for="tab-products" class="tab-btn">Gel Blasters Catalog ( Items )</label>
+        </div>
+
+        <div class="content-container">
+
+            <div id="content-intro" class="tab-content intro-box">
+                <span class="welcome-badge">Official Website of Empire</span>
+                <h2>Nigeria's Premier Tactical Gel Blaster Retailer</h2>
+
+                <p>Welcome to <strong>Empire</strong>, the leading provider of electric and manual water gel blasters,
+                    tactical gear, and accessories in Nigeria. Designed for outdoor sports, team skirmishes, and target
+                    training, our blasters shoot safe, eco-friendly water gel beads that break upon impact without
+                    leaving stains.</p>
+
+                <div class="highlight-box">
+                    <p style="margin: 0; font-weight: 700; color: #f97316;">Over 5 Years of Proven Excellence</p>
+                    <p style="margin-top: 5px; font-size: 0.95rem;">For over 5 years, Empire has supplied gear across
+                        Lagos, Abuja, Port Harcourt, And surrounding states. Our experience guarantees verified product
+                        testing, replacement batteries, and full customer service support and also their will be fees
+                        for
+                        transpoting any Gel Blaster to your state . And also there will be fees for transporting the
+                        Gellets
+                        to your state</p>
+                </div>
+
+                <p><strong>Why Shop With Empire?</strong></p>
+                <ul class="features-list">
+                    <li><strong>5+ Years Experience:</strong> Complete knowledge of blaster maintenance, upgrades, and
+                        replacement parts.</li>
+                    <li><strong>Negotiable Pricing:</strong> We offer price flexibility on all items so you get the
+                        best value.</li>
+                    <li><strong>Quality Tested:</strong> Every gel blaster is performance-tested before dispatch.</li>
+                    <li><strong>Fast Delivery:</strong> Direct dispatch across all major Nigerian cities.</li>
+                </ul>
+
+                <div class="contact-box">
+                    <h3>Direct Sales & Price Negotiation</h3>
+                    <p>Call or send us a message on WhatsApp for instant pricing inquiries and discounts:</p>
+                    <a href="tel:+2348169302651" class="contact-number">+234 8169302651</a><br>
+                    <a href="https://wa.me/2348169302651" target="_blank" class="contact-btn">Chat on WhatsApp</a>
+                </div>
+            </div>
+
+            <div id="content-products" class="tab-content">
+                <div class="catalog-header">
+                     <h2>Gel Blasters Price List</h2>
+        <p>All prices listed below are fully open for negotiation — Call/WhatsApp  +234
+                        8169302651</p>
+                </div>
+
+                <div class="product-grid">
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">     M4A1 Tactical V2     </div>
+                            <div class="product-desc">Full-auto electric assau lt rifle with adjustable stock and
+                                high-capacity magazine.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦89,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      Glock 18 Stealth      </div>
+                            <div class="product-desc">Electric burst sidearm with extended magazine and quick-reload
+                                hopper.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦49,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      Surge Pro Rifle     </div>
+                            <div class="product-desc">High-velocity match-grade blaster equipped with rechargeable LiPo
+                                battery.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦128,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      AK-47 Vanguard      </div>
+                            <div class="product-desc">Classic tactical assault model featuring wood-grain styling and
+                                drum magazine.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦120,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Vector CQB SMG      </div>
+                            <div class="product-desc">Rapid fire submachine gun specifically engineered for close-range
+                                battles.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦101,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Sniper Series X      </div>
+                            <div class="product-desc">Manual bolt-action precision sniper rifle with detachable optical
+                                scope.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦156,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Desert Eagle      </div>
+                            <div class="product-desc">Heavyweight blowback pistol with top accessory rails for mounting
+                                scopes.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦58,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">   HK416D Pro   </div>
+                            <div class="product-desc">Reinforced alloy metal gearbox upgrade with holographic sight
+                                attachment.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦140,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Scar-L Tactical      </div>
+                            <div class="product-desc">Desert tan finish featuring foldable stock and removable mock
+                                suppressor.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦109,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       MP5K Compact      </div>
+                            <div class="product-desc">Ultra-portable submachine gun designed for maximum field mobility.
+                            </div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦78,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       P90 Cyber Edition      </div>
+                            <div class="product-desc">Bullpup ergonomic layout with clear top-loading magazine system.
+                            </div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦92,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       ARP9 Speedsoft      </div>
+                            <div class="product-desc">High RPM gearbox tuned specifically for fast-paced indoor arena
+                                games.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦101,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Barrett M82 Heavy      </div>
+                            <div class="product-desc">Full-length anti-material sniper replica with stabilizing metal
+                                bipod.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦190,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       M870 Shotgun      </div>
+                            <div class="product-desc">Manual pump-action blaster delivering wide multi-gel impact
+                                spreads.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦70,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Sig P320 Tactical       </div>
+                            <div class="product-desc">Tactical black sidearm featuring realistic manual slide action.
+                            </div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦56,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       M249 Squad SAW      </div>
+                            <div class="product-desc">Heavy automatic support gun with 2500-round motorized box mag.
+                            </div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦215,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      UZI Mini SMG      </div>
+                            <div class="product-desc">Compact fully automatic machine pistol with folding stock.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦65,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      Beretta M92 Sidearm      </div>
+                            <div class="product-desc">Classic Italian military pistol replica fitted with bottom laser
+                                mount.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦50,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">      AUG A3 Bullpup      </div>
+                            <div class="product-desc">Full metal barrel rail system integrated with long-range optical
+                                sight.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦120,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-info">
+                            <div class="product-title">       Vector Special Ops      </div>
+                            <div class="product-desc">Custom stealth variant featuring extended barrel and tracer unit
+                                compatibility.</div>
+                        </div>
+                        <div class="price-tag">
+                            <div class="product-price">₦136,000</div>
+                            <span class="negotiable-text">Price Negotiable</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p> Trust Us To Deliver Your Order Safely </p>
+</body>
+
+</html>
